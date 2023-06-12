@@ -1,0 +1,98 @@
+.book-page {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.book-title {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.book-info {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-image {
+  width: 300px;
+  height: 500px;
+  object-fit: cover;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.buy-now-button,
+.add-to-cart-button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.book-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.book-description {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.custom-left-button {
+  background-color: #e8a87c;
+  border-color: #e8a87c;
+  height: 50px;
+  width: 110px;
+}
+
+.custom-left-button:hover {
+  background-color: #c68d5f;
+  border-color: #c68d5f;
+}
+
+.custom-left-button:active {
+  background-color: #c68d5f !important;
+  border-color: #eae7dc !important;
+}
+
+.custom-right-button {
+  background-color: #e27d60;
+  border-color: #e27d60;
+  margin-left: 20px;
+  height: 50px;
+  width: 110px;
+}
+
+.custom-right-button:hover {
+  background-color: #c7694b;
+  border-color: #c7694b;
+}
+
+.custom-right-button:active {
+  background-color: #c7694b !important;
+  border-color: #eae7dc !important;
+}
+
+.toast-message {
+  background: green !important;
+  color: white !important;
+}

@@ -1,0 +1,15 @@
+.custom-subnavbar {
+  background-color: #e8a87c !important;
+  color: white !important;
+}
+
+.custom-text {
+  color: white !important;
+  transition: 0.3s ease;
+  font-size: 17px;
+}
+
+.custom-text:hover {
+  transform: scale(1.2);
+  color: black !important;
+}

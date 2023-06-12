@@ -1,0 +1,67 @@
+.books-container {
+  text-align: center;
+}
+
+.custom-header {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 60px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.book {
+  width: 23%;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.book:hover {
+  transform: scale(1.1);
+}
+
+.book img {
+  width: 70%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.line {
+  width: 10%;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.parent-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.custom-button {
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+  background-color: #e27d60;
+  border-color: #e27d60;
+}
+
+.custom-button:hover {
+  background-color: #c7694b;
+  border-color: #c7694b;
+}
+
+.custom-button:active {
+  background-color: #c7694b !important;
+  border-color: #d8c3a5 !important;
+}

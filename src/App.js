@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 
-function App() {
+import "./App.css";
+import { Navbar } from "./components/Navbar";
+
+import { Register } from "./components/Register";
+import { Login } from "./components/Login";
+import { Aboutus } from "./components/Aboutus";
+import { Books } from "./components/Books";
+import Cart from "./components/Cart";
+import Bookdetail from "./components/Bookdetail";
+import { Addbook } from "./components/Addbook";
+import { Protected } from "./components/Protected";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Navbar />
+        <div>
+          <Routes>
+            <Route path="/" element={<Navigate to="/books" />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/cart" element={<Protected Component={Cart} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/aboutus" element={<Aboutus />} />
+            <Route path="/book/:id" element={<Bookdetail />} />
+            <Route path="/books/addbook" element={<Addbook />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;

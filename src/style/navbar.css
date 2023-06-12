@@ -1,0 +1,39 @@
+.my-custom-navbar {
+  padding: 20px;
+  font-size: 20px;
+  background-color: #e27d60 !important;
+}
+
+.custom-search {
+  border-color: white;
+  color: white;
+}
+
+.custom-search:hover {
+  background-color: white;
+  border-color: #eae7dc;
+}
+
+.brand-style {
+  color: white;
+  font-size: 30px;
+}
+
+.brand-style:hover {
+  color: white;
+  font-size: 30px;
+}
+
+.text-link {
+  color: white !important;
+}
+
+.custom-search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px white; /* Change the color to your desired highlight color */
+}
+
+.icon-style {
+  vertical-align: middle;
+  margin-right: 5px;
+}
