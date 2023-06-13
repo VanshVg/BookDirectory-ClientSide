@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/login.css";
 import axios from "axios";
-import { Authcontext } from "./Authcontext";
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
+import {
+  login,
+  setIsLoggedIn,
+  setUserType,
+  setUserToken,
+} from "../redux/actions/authActions";
 import { useFormik } from "formik";
 import { loginSchema } from "../schema/Loginschema";
 
@@ -13,38 +18,33 @@ export const Login = () => {
     password: "",
   };
   const navigate = useNavigate();
-  const { setIsLoggedIn, setUserType, setUserToken, auth } =
-    useContext(Authcontext);
-
-  const [inputData, setInputData] = useState(data);
+  const dispatch = useDispatch();
 
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: data,
       validationSchema: loginSchema,
       onSubmit: (values, action) => {
-        axios
-          .post("http://localhost:4000/api/login", inputData)
-          .then((resp) => {
-            if (resp.data.isLoggedIn) {
-              setIsLoggedIn(true);
-              setUserType(resp.data.role);
-              setUserToken(resp.data.userToken);
-              localStorage.setItem("isLoggedIn", true);
-              localStorage.setItem("userType", resp.data.role);
-              localStorage.setItem("userToken", resp.data.userToken);
-            }
-            console.log(resp);
-          });
-        setInputData(data);
+        axios.post("http://localhost:4000/api/login", values).then((resp) => {
+          if (resp.data.isLoggedIn) {
+            dispatch(login(true, resp.data.role, resp.data.userToken));
+            dispatch(setIsLoggedIn(true));
+            dispatch(setUserType(resp.data.role));
+            dispatch(setUserToken(resp.data.userToken));
+            localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("userType", resp.data.role);
+            localStorage.setItem("userToken", resp.data.userToken);
+          }
+          console.log(resp);
+        });
+
         navigate("/books");
         action.resetForm();
-        auth.login();
       },
     });
+
   const handleInputChange = (e) => {
     handleChange(e);
-    setInputData({ ...values, [e.target.name]: e.target.value });
   };
 
   return (

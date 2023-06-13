@@ -1,33 +1,38 @@
-import React, { useContext, useEffect, useState } from "react";
-import "../style/bookdetail.css";
-import { Authcontext } from "./Authcontext";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  selectUserType,
+  selectIsLoggedIn,
+  setUserType,
+  setCartItems,
+} from "../redux/actions/authActions";
+
+import "../style/bookdetail.css";
 
 const Bookdetail = () => {
-  const { userType } = useContext(Authcontext);
-  const [bookData, setBookData] = useState({});
+  const userType = useSelector((state) => state.auth.userType);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:4000/api/showBook/${id}`).then((resp) => {
-      setBookData(resp.data.book);
+      dispatch(setCartItems(resp.data.book));
     });
-  }, [id]);
-
-  const { title, imageUrl, price, author, pages, description, genre, bookId } =
-    bookData;
+  }, [dispatch, id]);
 
   const handleAddCart = () => {
     const storedToken = localStorage.getItem("userToken");
     if (storedToken) {
       const tokenPayload = JSON.parse(atob(storedToken.split(".")[1]));
       const userId = tokenPayload.data.userId;
-      if (localStorage.getItem("isLoggedIn") === "true") {
+      if (isLoggedIn) {
         axios
           .post(`http://localhost:4000/api/addtocart/${bookId}`, { userId })
           .then((resp) => {
@@ -54,6 +59,9 @@ const Bookdetail = () => {
       navigate("/login");
     }
   };
+
+  const { title, imageUrl, price, author, pages, description, genre, bookId } =
+    useSelector((state) => state.auth.cartItems);
 
   return (
     <div className="book-page">
@@ -99,10 +107,10 @@ const Bookdetail = () => {
           <strong>Author:</strong> {author}
         </p>
         <p>
-          <strong>Price:</strong> {price}
+          <strong>Price:</strong> {price}₹
         </p>
         <p>
-          <strong>Pages:</strong> {pages}₹
+          <strong>Pages:</strong> {pages}
         </p>
         {genre && (
           <p>

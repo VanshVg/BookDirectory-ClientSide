@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../style/register.css";
 import axios from "axios";
 import { useState } from "react";
-import { useContext } from "react";
-import { Authcontext } from "./Authcontext";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/authActions";
 
 const data = {
   firstname: "",
@@ -17,7 +17,7 @@ const data = {
 
 export const Register = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setUserType, setUserToken } = useContext(Authcontext);
+  const dispatch = useDispatch();
 
   const [inputData, setInputData] = useState(data);
 
@@ -29,12 +29,11 @@ export const Register = () => {
     e.preventDefault();
     axios.post("http://localhost:4000/api/register", inputData).then((resp) => {
       if (resp.data.isLoggedIn) {
-        setIsLoggedIn(true);
-        setUserType(resp.data.role);
-        setUserToken(resp.data.userToken);
+        const { role, userToken } = resp.data;
+        dispatch(login(true, role, userToken));
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("userType", resp.data.role);
-        localStorage.setItem("userToken", resp.data.userToken);
+        localStorage.setItem("userType", role);
+        localStorage.setItem("userToken", userToken);
       }
     });
     setInputData(data);
@@ -98,7 +97,6 @@ export const Register = () => {
           >
             <option selected>Role</option>
             <option value="customer">Customer</option>
-            <option value="seller">Seller</option>
             <option value="admin">Admin</option>
           </select>
         </div>

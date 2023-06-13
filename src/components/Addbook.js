@@ -18,15 +18,9 @@ export const Addbook = () => {
     const { name, value } = e.target;
 
     if (name === "genre") {
-      const genres = value
-        .split(",")
-        .map((genre) => genre.trim())
-        .reduce((acc, genre, index) => {
-          acc[index] = genre;
-          return acc;
-        }, {});
+      const genres = value.split(",").map((genre) => genre.trim());
 
-      setBookData({ ...bookData, genre: genres });
+      setBookData({ ...bookData, [name]: genres });
     } else {
       setBookData({ ...bookData, [name]: value });
     }

@@ -1,21 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import "../style/books.css";
 import { Subnavbar } from "./Subnavbar";
 import { Link, useNavigate } from "react-router-dom";
-import { Authcontext } from "./Authcontext";
+import { setBookData } from "../redux/actions/bookActions.js";
 
 export const Books = () => {
-  const [bookData, setBookData] = useState([]);
-  const { userType } = useContext(Authcontext);
-
+  const bookData = useSelector((state) => state.book.bookData);
+  const userType = useSelector((state) => state.auth.userType);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/showbooks").then((resp) => {
-      setBookData(resp.data.data);
+      dispatch(setBookData(resp.data.data));
     });
-  }, []);
+  }, [dispatch]);
 
   const handleAddBook = () => {
     navigate("/books/addbook");
@@ -41,20 +42,17 @@ export const Books = () => {
           </div>
         </div>
       </div>
-      {userType === "admin" ? (
-        <>
-          {" "}
-          <div align="center">
-            <button
-              type="button"
-              className="btn btn-primary custom-button"
-              onClick={handleAddBook}
-            >
-              Add a Book
-            </button>
-          </div>
-        </>
-      ) : null}
+      {userType === "admin" && (
+        <div align="center">
+          <button
+            type="button"
+            className="btn btn-primary custom-button"
+            onClick={handleAddBook}
+          >
+            Add a Book
+          </button>
+        </div>
+      )}
     </>
   );
 };

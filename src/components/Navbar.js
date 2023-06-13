@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import logo from "../logo512.png";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/navbar.css";
 import axios from "axios";
-import { useContext } from "react";
-import { Authcontext } from "./Authcontext";
 import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
@@ -14,31 +12,38 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import AppRegistrationRoundedIcon from "@mui/icons-material/AppRegistrationRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import { setIsLoggedIn, setUserType } from "../redux/actions/authActions";
 
 export const Navbar = () => {
-  const { isLoggedIn, setIsLoggedIn } = useContext(Authcontext);
-  const { userType, setUserType } = useContext(Authcontext);
+  const userType = useSelector((state) => state.auth.userType);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedLoginStatus = localStorage.getItem("isLoggedIn");
-    console.log("Stored Login Status:", storedLoginStatus);
+    const storedUserType = localStorage.getItem("userType");
+
     if (storedLoginStatus === "true") {
-      setIsLoggedIn(true);
-      console.log("Is Logged In:", isLoggedIn);
+      dispatch(setIsLoggedIn(true));
     } else {
-      setIsLoggedIn(false);
+      dispatch(setIsLoggedIn(false));
     }
-  }, [isLoggedIn]);
+
+    if (storedUserType) {
+      dispatch(setUserType(storedUserType));
+    }
+  }, []);
 
   const handleLogout = () => {
     axios.post("http://localhost:4000/api/logout").then((resp) => {
-      setIsLoggedIn(false);
-      setUserType("customer");
+      dispatch(setIsLoggedIn(false));
+      dispatch(setUserType("customer"));
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("userType");
       localStorage.removeItem("userToken");
       console.log(resp);
+      navigate("/books");
     });
   };
 
@@ -48,7 +53,7 @@ export const Navbar = () => {
         <div className="container-fluid">
           <Link className="navbar-brand brand-style" to="/books">
             <img
-              src={logo}
+              src="../logo512.png"
               width="30"
               height="30"
               className="d-inline-block align-top"
@@ -84,16 +89,14 @@ export const Navbar = () => {
               </li>
               <li className="nav-item">
                 {userType === "customer" ? (
-                  <>
-                    <Link
-                      className="nav-link active text-link"
-                      aria-current="page"
-                      to="/cart"
-                    >
-                      <ShoppingCartRoundedIcon className="icon-style" />
-                      Cart
-                    </Link>
-                  </>
+                  <Link
+                    className="nav-link active text-link"
+                    aria-current="page"
+                    to="/cart"
+                  >
+                    <ShoppingCartRoundedIcon className="icon-style" />
+                    Cart
+                  </Link>
                 ) : (
                   <Link
                     className="nav-link active text-link"
