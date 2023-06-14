@@ -16,6 +16,7 @@ import Cart from "./components/Cart";
 import Bookdetail from "./components/Bookdetail";
 import { Addbook } from "./components/Addbook";
 import { Protected } from "./components/Protected";
+import { Editbook } from "./components/Editbook";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/book/:id" element={<Bookdetail />} />
             <Route path="/books/addbook" element={<Addbook />} />
+            <Route path="/editbook/:id" element={<Editbook />} />
           </Routes>
         </div>
       </Router>

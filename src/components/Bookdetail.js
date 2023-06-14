@@ -4,14 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  selectUserType,
-  selectIsLoggedIn,
-  setUserType,
-  setCartItems,
-} from "../redux/actions/authActions";
-
+import { setCartItems } from "../redux/actions/authActions";
 import "../style/bookdetail.css";
+import { removeBook } from "../redux/actions/bookActions";
 
 const Bookdetail = () => {
   const userType = useSelector((state) => state.auth.userType);
@@ -41,7 +36,7 @@ const Bookdetail = () => {
           .catch((err) => {
             console.log(err);
           });
-        toast("Item added to cart successfully", {
+        toast.success("Item added to cart successfully", {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: true,
@@ -63,6 +58,22 @@ const Bookdetail = () => {
   const { title, imageUrl, price, author, pages, description, genre, bookId } =
     useSelector((state) => state.auth.cartItems);
 
+  const handleEditBook = (bookId) => {
+    navigate(`/editbook/${bookId}`);
+  };
+
+  const handleDeleteBook = (bookId) => {
+    axios
+      .delete(`http://localhost:4000/api/removebook/${bookId}`)
+      .then(() => {
+        dispatch(removeBook(bookId));
+        navigate("/books");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="book-page">
       <h1 className="book-title">{title}</h1>
@@ -75,13 +86,18 @@ const Bookdetail = () => {
       <div className="buttons-container">
         {userType === "admin" ? (
           <>
-            <button type="button" class="btn btn-primary custom-left-button">
+            <button
+              type="button"
+              className="btn btn-primary custom-left-button"
+              onClick={() => handleEditBook(bookId)}
+            >
               Edit Book
             </button>
             <button
               type="button"
-              class="btn btn-secondary custom-right-button"
+              className="btn btn-secondary custom-right-button"
               style={{ width: "120px" }}
+              onClick={() => handleDeleteBook(bookId)}
             >
               Delete Book
             </button>
@@ -90,13 +106,16 @@ const Bookdetail = () => {
           <>
             <button
               type="button"
-              class="btn btn-success custom-left-button"
+              className="btn btn-success custom-left-button"
               onClick={handleAddCart}
             >
               Add to Cart
             </button>
             <ToastContainer />
-            <button type="button" class="btn btn-primary custom-right-button">
+            <button
+              type="button"
+              className="btn btn-primary custom-right-button"
+            >
               Buy Now
             </button>
           </>
