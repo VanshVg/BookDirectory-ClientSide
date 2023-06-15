@@ -18,24 +18,32 @@ export const Subnavbar = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-center"
+          className="collapse navbar-collapse justify-content-center"
           id="navbarNavAltMarkup"
         >
           <div class="navbar-nav ">
             <Link
-              class="nav-link active custom-text"
+              className="nav-link active custom-text"
               aria-current="page"
-              href="#"
+              to="/books/Thriller"
             >
-              Thriler
+              Thriller
             </Link>
-            <Link class="nav-link active custom-text" href="#">
+            <Link className="nav-link active custom-text" to="/books/Action">
               Action
             </Link>
-            <Link class="nav-link active custom-text" href="#">
-              Rom-Com
+            <Link className="nav-link active custom-text" to="/books/Romcom">
+              RomCom
             </Link>
-            <Link class="nav-link active custom-text">Psychologically</Link>
+            <Link className="nav-link active custom-text" to="/books/War">
+              War
+            </Link>
+            <Link className="nav-link active custom-text" to="/books/Novel">
+              Novel
+            </Link>
+            <Link className="nav-link active custom-text" to="/books/Fiction">
+              Fiction
+            </Link>
           </div>
         </div>
       </div>

@@ -17,6 +17,7 @@ import Bookdetail from "./components/Bookdetail";
 import { Addbook } from "./components/Addbook";
 import { Protected } from "./components/Protected";
 import { Editbook } from "./components/Editbook";
+import { Filterbooks } from "./components/Filterbooks";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/book/:id" element={<Bookdetail />} />
             <Route path="/books/addbook" element={<Addbook />} />
             <Route path="/editbook/:id" element={<Editbook />} />
+            <Route path="/books/:value" element={<Filterbooks />} />
           </Routes>
         </div>
       </Router>
