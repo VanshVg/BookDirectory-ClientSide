@@ -32,7 +32,14 @@ h5 {
   margin-top: 50px;
   background-color: #e27d60;
   border-color: #e27d60;
-  margin-right: 15px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.custom-remove-button {
+  background-color: #e27d60;
+  border-color: #e27d60;
+  margin-left: 20px;
 }
 
 .custom-button:hover {
@@ -40,7 +47,17 @@ h5 {
   border-color: #c7694b;
 }
 
+.custom-remove-button:hover {
+  background-color: #c7694b;
+  border-color: #c7694b;
+}
+
 .custom-button:active {
+  background-color: #c7694b !important;
+  border-color: #d8c3a5 !important;
+}
+
+.custom-remove-button:active {
   background-color: #c7694b !important;
   border-color: #d8c3a5 !important;
 }
@@ -63,12 +80,9 @@ h5 {
 
 .price {
   margin-left: 210px;
-  /* font-size: large; */
-  /* font-weight: bold; */
 }
 
 .price-value {
   margin-left: 200px;
-  /* font-size: large; */
   font-weight: bold;
 }

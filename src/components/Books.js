@@ -50,6 +50,7 @@ export const Books = () => {
               <div className="book" key={index}>
                 <Link to={`/book/${book.bookId}`}>
                   <img src={book.imageUrl} alt={book.title} />
+                  <p className="book-title">{book.title}</p>
                 </Link>
               </div>
             ))}

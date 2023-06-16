@@ -145,6 +145,14 @@ const Cart = () => {
                   <button
                     type="button"
                     className="btn btn-primary custom-button"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div align="center">
+                  <button
+                    type="button"
+                    className="btn btn-primary custom-remove-button"
                     onClick={() => {
                       handleRemoveCart(book.bookId);
                     }}

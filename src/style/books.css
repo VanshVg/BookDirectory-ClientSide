@@ -26,6 +26,7 @@
   margin-bottom: 20px;
   transition: 0.3s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .book:hover {
@@ -36,6 +37,13 @@
   width: 70%;
   height: auto;
   margin-bottom: 20px;
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.book .book-title {
+  position: absolute;
+  opacity: 0;
 }
 
 .line {
