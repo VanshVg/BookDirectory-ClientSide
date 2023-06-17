@@ -20,6 +20,7 @@ import { Filterbooks } from "./components/Filterbooks";
 import { Payment } from "./components/Payment";
 import { Paymentsuccess } from "./components/Paymentsuccess";
 import { Paymentfailure } from "./components/Paymentfailure";
+import { Search } from "./components/Search";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/processPayment/:id" element={<Payment />} />
             <Route path="/paymentSuccess/:id" element={<Paymentsuccess />} />
             <Route path="/paymentFailure/:id" element={<Paymentfailure />} />
+            <Route path="/search" element={<Search />} />
           </Routes>
         </div>
       </Router>

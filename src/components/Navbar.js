@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/navbar.css";
@@ -19,6 +19,8 @@ export const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const storedLoginStatus = localStorage.getItem("isLoggedIn");
@@ -44,11 +46,15 @@ export const Navbar = () => {
       dispatch(setIsLoggedIn(false));
       dispatch(setUserType("customer"));
       localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("userType");
       localStorage.removeItem("userToken");
       console.log(resp);
       navigate("/books");
     });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${searchValue}`);
   };
 
   return (
@@ -181,13 +187,15 @@ export const Navbar = () => {
                 </ul>
               </li>
             </ul>
-            <div className="ms-2"></div> {/* Add this line */}
-            <form className="d-flex" role="search">
+            <div className="ms-2"></div>
+            <form className="d-flex" role="search" onSubmit={handleSearch}>
               <input
                 className="form-control me-2 custom-search-input border-white "
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
               />
               <button
                 className="btn btn-outline-success custom-search"

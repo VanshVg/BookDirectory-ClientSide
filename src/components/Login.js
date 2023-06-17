@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/login.css";
 import axios from "axios";
@@ -20,27 +20,36 @@ export const Login = () => {
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loginError, setLoginError] = useState(null);
 
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: data,
       validationSchema: loginSchema,
       onSubmit: (values, action) => {
-        axios.post("http://localhost:4000/api/login", values).then((resp) => {
-          if (resp.data.isLoggedIn) {
-            dispatch(login(true, resp.data.role, resp.data.userToken));
-            dispatch(setIsLoggedIn(true));
-            dispatch(setUserType(resp.data.role));
-            dispatch(setUserToken(resp.data.userToken));
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("userType", resp.data.role);
-            localStorage.setItem("userToken", resp.data.userToken);
-          }
-          console.log(resp);
-        });
+        axios
+          .post("http://localhost:4000/api/login", values)
+          .then((resp) => {
+            if (resp.data.isLoggedIn) {
+              dispatch(login(true, resp.data.role, resp.data.userToken));
+              dispatch(setIsLoggedIn(true));
+              dispatch(setUserType(resp.data.role));
+              dispatch(setUserToken(resp.data.userToken));
+              localStorage.setItem("isLoggedIn", true);
+              localStorage.setItem("userType", resp.data.role);
+              localStorage.setItem("userToken", resp.data.userToken);
+            }
 
-        navigate("/books");
-        action.resetForm();
+            if (resp.status == 200) {
+              navigate("/books");
+              action.resetForm();
+            }
+          })
+          .catch((err) => {
+            if (err.response.status != 200) {
+              setLoginError("Invalid Email or Password. Please try again.");
+            }
+          });
       },
     });
 
@@ -92,6 +101,12 @@ export const Login = () => {
               <p style={{ color: "red" }}>{errors.password}</p>
             ) : null}
           </div>
+
+          {loginError && (
+            <p className="error-message" style={{ color: "red" }}>
+              {loginError}
+            </p>
+          )}
 
           <button type="submit" className="btn btn-primary submitButton">
             Login

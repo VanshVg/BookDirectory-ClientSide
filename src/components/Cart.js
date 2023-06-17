@@ -95,6 +95,10 @@ const Cart = () => {
     navigate(`/book/${bookId}`);
   };
 
+  const handleBuyNow = (bookId, quantity) => {
+    navigate(`/processPayment/${bookId}?quantity=${quantity}`);
+  };
+
   return (
     <>
       <Navbar />
@@ -147,6 +151,7 @@ const Cart = () => {
                   <button
                     type="button"
                     className="btn btn-primary custom-button"
+                    onClick={() => handleBuyNow(book.bookId, book.quantity)}
                   >
                     Buy Now
                   </button>

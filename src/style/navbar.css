@@ -5,32 +5,39 @@
 }
 
 .custom-search {
-  border-color: white;
-  color: white;
+  border-color: #eae7dc;
+  color: #eae7dc;
 }
 
 .custom-search:hover {
-  background-color: white;
-  border-color: #eae7dc;
+  background-color: #eae7dc;
+  border-color: #e27d60 !important;
+  color: #e27d60;
+}
+
+.custom-search:active {
+  background-color: #c8c3b7 !important;
+  border-color: #c8c3b7 !important;
+  color: #e27d60 !important;
 }
 
 .brand-style {
-  color: white;
+  color: #eae7dc;
   font-size: 30px;
 }
 
 .brand-style:hover {
-  color: white;
+  color: #eae7dc;
   font-size: 30px;
 }
 
 .text-link {
-  color: white !important;
+  color: #eae7dc !important;
 }
 
 .custom-search-input:focus {
   outline: none;
-  box-shadow: 0 0 0 1px white; /* Change the color to your desired highlight color */
+  box-shadow: 0 0 0 1px #eae7dc; /* Change the color to your desired highlight color */
 }
 
 .icon-style {
