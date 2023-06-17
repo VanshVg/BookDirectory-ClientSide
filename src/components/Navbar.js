@@ -33,7 +33,11 @@ export const Navbar = () => {
     if (storedUserType) {
       dispatch(setUserType(storedUserType));
     }
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("userType", userType);
+  }, [userType]);
 
   const handleLogout = () => {
     axios.post("http://localhost:4000/api/logout").then((resp) => {

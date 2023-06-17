@@ -5,6 +5,7 @@ import "../style/books.css";
 import { Subnavbar } from "./Subnavbar";
 import { Link, useNavigate } from "react-router-dom";
 import { setBookData } from "../redux/actions/bookActions.js";
+import { Navbar } from "./Navbar";
 
 export const Books = () => {
   const bookData = useSelector((state) => state.book.bookData);
@@ -16,16 +17,20 @@ export const Books = () => {
   const booksPerPage = 8;
 
   useEffect(() => {
+    dispatch(setBookData([]));
     axios.get("http://localhost:4000/api/showbooks").then((resp) => {
       dispatch(setBookData(resp.data.data));
     });
   }, [dispatch]);
 
+  if (!Array.isArray(bookData)) {
+    return <p>Loading...</p>;
+  }
+
   const handleAddBook = () => {
     navigate("/books/addbook");
   };
 
-  // Pagination logic
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = bookData.slice(indexOfFirstBook, indexOfLastBook);
@@ -38,6 +43,7 @@ export const Books = () => {
 
   return (
     <>
+      <Navbar />
       <Subnavbar />
       <div className="parent-container">
         <h1 className="custom-header" align="center">

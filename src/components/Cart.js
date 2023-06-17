@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "./Navbar";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -96,6 +97,7 @@ const Cart = () => {
 
   return (
     <>
+      <Navbar />
       <h1 align="center">Books Cart</h1>
       <div>
         {cartData.map((book) => (

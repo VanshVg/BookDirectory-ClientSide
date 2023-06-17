@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setBookData } from "../redux/actions/bookActions.js";
 import { Link, useParams } from "react-router-dom";
 import { Subnavbar } from "./Subnavbar.js";
+import { Navbar } from "./Navbar";
 
 export const Filterbooks = () => {
   const bookData = useSelector((state) => state.book.bookData);
@@ -23,6 +24,7 @@ export const Filterbooks = () => {
 
   return (
     <>
+      <Navbar />
       <Subnavbar />
       <div className="parent-container">
         <h1 className="custom-header" align="center">

@@ -11,6 +11,7 @@ import {
 } from "../redux/actions/authActions";
 import { useFormik } from "formik";
 import { loginSchema } from "../schema/Loginschema";
+import { Navbar } from "./Navbar";
 
 export const Login = () => {
   const data = {
@@ -48,56 +49,59 @@ export const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1 className="login-heading" align="center">
-        Login
-      </h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="formGroup">
-          <label htmlFor="exampleInputEmail1" className="label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control input"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-            value={values.email}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-          />
-          {errors.email && touched.email ? (
-            <p style={{ color: "red" }}>{errors.email}</p>
-          ) : null}
-        </div>
-
-        <div className="formGroup">
-          <label htmlFor="password" className="label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control input"
-            id="password"
-            name="password"
-            value={values.password}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-          />
-          {errors.password && touched.password ? (
-            <p style={{ color: "red" }}>{errors.password}</p>
-          ) : null}
-        </div>
-
-        <button type="submit" className="btn btn-primary submitButton">
+    <>
+      <Navbar />
+      <div className="login-container">
+        <h1 className="login-heading" align="center">
           Login
-        </button>
-      </form>
-      <p>
-        New User?
-        <Link to="/register">Create an Account</Link>
-      </p>
-    </div>
+        </h1>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="formGroup">
+            <label htmlFor="exampleInputEmail1" className="label">
+              Email address
+            </label>
+            <input
+              type="email"
+              className="form-control input"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              name="email"
+              value={values.email}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+            />
+            {errors.email && touched.email ? (
+              <p style={{ color: "red" }}>{errors.email}</p>
+            ) : null}
+          </div>
+
+          <div className="formGroup">
+            <label htmlFor="password" className="label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control input"
+              id="password"
+              name="password"
+              value={values.password}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && touched.password ? (
+              <p style={{ color: "red" }}>{errors.password}</p>
+            ) : null}
+          </div>
+
+          <button type="submit" className="btn btn-primary submitButton">
+            Login
+          </button>
+        </form>
+        <p>
+          New User?
+          <Link to="/register">Create an Account</Link>
+        </p>
+      </div>
+    </>
   );
 };

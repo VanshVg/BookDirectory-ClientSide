@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import { Navbar } from "./components/Navbar";
 
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
@@ -18,12 +17,14 @@ import { Addbook } from "./components/Addbook";
 import { Protected } from "./components/Protected";
 import { Editbook } from "./components/Editbook";
 import { Filterbooks } from "./components/Filterbooks";
+import { Payment } from "./components/Payment";
+import { Paymentsuccess } from "./components/Paymentsuccess";
+import { Paymentfailure } from "./components/Paymentfailure";
 
 const App = () => {
   return (
     <div>
       <Router>
-        <Navbar />
         <div>
           <Routes>
             <Route path="/" element={<Navigate to="/books" />} />
@@ -36,6 +37,9 @@ const App = () => {
             <Route path="/books/addbook" element={<Addbook />} />
             <Route path="/editbook/:id" element={<Editbook />} />
             <Route path="/books/:value" element={<Filterbooks />} />
+            <Route path="/processPayment/:id" element={<Payment />} />
+            <Route path="/paymentSuccess/:id" element={<Paymentsuccess />} />
+            <Route path="/paymentFailure/:id" element={<Paymentfailure />} />
           </Routes>
         </div>
       </Router>
