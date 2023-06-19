@@ -9,7 +9,6 @@ import "./App.css";
 
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
-import { Aboutus } from "./components/Aboutus";
 import { Books } from "./components/Books";
 import Cart from "./components/Cart";
 import Bookdetail from "./components/Bookdetail";
@@ -24,6 +23,7 @@ import { Search } from "./components/Search";
 import { Users } from "./components/Users";
 import { Profile } from "./components/Profile";
 import { Changepassword } from "./components/Changepassword";
+import { Aboutme } from "./components/Aboutme";
 
 const App = () => {
   return (
@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/cart" element={<Protected Component={Cart} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/aboutus" element={<Aboutus />} />
+            <Route path="/aboutme" element={<Aboutme />} />
             <Route path="/book/:id" element={<Bookdetail />} />
             <Route path="/books/addbook" element={<Addbook />} />
             <Route path="/editbook/:id" element={<Editbook />} />

@@ -155,9 +155,9 @@ export const Navbar = () => {
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <Link className="dropdown-item" to="/aboutus">
+                        <Link className="dropdown-item" to="/aboutme">
                           <InfoRoundedIcon className="icon-style" />
-                          About us
+                          About me
                         </Link>
                       </li>
                     </>
@@ -179,9 +179,9 @@ export const Navbar = () => {
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <Link className="dropdown-item" to="/aboutus">
+                        <Link className="dropdown-item" to="/aboutme">
                           <InfoRoundedIcon className="icon-style" />
-                          About us
+                          About me
                         </Link>
                       </li>
                     </>
@@ -194,7 +194,7 @@ export const Navbar = () => {
               <input
                 className="form-control me-2 custom-search-input border-white "
                 type="search"
-                placeholder="Search"
+                placeholder="Search Books"
                 aria-label="Search"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
