@@ -14,7 +14,9 @@ export const Search = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/search", { params: { title: title } })
+      .get("https://book-directory-api-tkvh.onrender.com/api/search", {
+        params: { title: title },
+      })
       .then((resp) => {
         dispatch(setBookData(resp.data.data));
       })
@@ -27,7 +29,7 @@ export const Search = () => {
     const newTitle = new URLSearchParams(location.search).get("query");
     if (newTitle !== title) {
       axios
-        .get("http://localhost:4000/api/search", {
+        .get("https://book-directory-api-tkvh.onrender.com/api/search", {
           params: { title: newTitle },
         })
         .then((resp) => {

@@ -33,8 +33,9 @@
 }
 
 .book img {
-  width: 70%;
-  height: auto;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
   margin-bottom: 20px;
   opacity: 1;
   transition: 0.3s ease;

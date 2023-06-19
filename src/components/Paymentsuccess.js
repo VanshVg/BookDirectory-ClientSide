@@ -13,9 +13,11 @@ export const Paymentsuccess = () => {
   const bookData = useSelector((state) => state.book.bookData);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/showbook/${id}`).then((resp) => {
-      dispatch(setBookData(resp.data.book));
-    });
+    axios
+      .get(`https://book-directory-api-tkvh.onrender.com/api/showbook/${id}`)
+      .then((resp) => {
+        dispatch(setBookData(resp.data.book));
+      });
   }, [dispatch]);
 
   const handleButton = () => {

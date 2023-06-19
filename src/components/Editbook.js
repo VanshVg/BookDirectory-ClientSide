@@ -21,19 +21,21 @@ export const Editbook = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/showbook/${id}`).then((resp) => {
-      const book = resp.data.book;
-      setBookData({
-        title: book.title,
-        author: book.author,
-        description: book.description,
-        genre: book.genre,
-        pages: book.pages,
-        isbn: book.isbn,
-        price: book.price,
-        image: null,
+    axios
+      .get(`https://book-directory-api-tkvh.onrender.com/api/showbook/${id}`)
+      .then((resp) => {
+        const book = resp.data.book;
+        setBookData({
+          title: book.title,
+          author: book.author,
+          description: book.description,
+          genre: book.genre,
+          pages: book.pages,
+          isbn: book.isbn,
+          price: book.price,
+          image: null,
+        });
       });
-    });
   }, []);
 
   const handleInputChange = (e) => {
@@ -69,9 +71,13 @@ export const Editbook = () => {
     });
 
     try {
-      await axios.put(`http://localhost:4000/api/updatebook/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.put(
+        `https://book-directory-api-tkvh.onrender.com/api/updatebook/${id}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       console.log("Book updated successfully!");
       toast.success("Book updated successfully", {
         position: "top-center",

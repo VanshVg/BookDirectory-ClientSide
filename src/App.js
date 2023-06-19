@@ -21,6 +21,9 @@ import { Payment } from "./components/Payment";
 import { Paymentsuccess } from "./components/Paymentsuccess";
 import { Paymentfailure } from "./components/Paymentfailure";
 import { Search } from "./components/Search";
+import { Users } from "./components/Users";
+import { Profile } from "./components/Profile";
+import { Changepassword } from "./components/Changepassword";
 
 const App = () => {
   return (
@@ -42,6 +45,12 @@ const App = () => {
             <Route path="/paymentSuccess/:id" element={<Paymentsuccess />} />
             <Route path="/paymentFailure/:id" element={<Paymentfailure />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/users" element={<Users />} />
+            <Route
+              path="/profile"
+              element={<Protected Component={Profile} />}
+            />
+            <Route path="/changepassword" element={<Changepassword />} />
           </Routes>
         </div>
       </Router>

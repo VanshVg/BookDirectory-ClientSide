@@ -18,9 +18,11 @@ const Bookdetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/showBook/${id}`).then((resp) => {
-      dispatch(setCartItems(resp.data.book));
-    });
+    axios
+      .get(`https://book-directory-api-tkvh.onrender.com/api/showBook/${id}`)
+      .then((resp) => {
+        dispatch(setCartItems(resp.data.book));
+      });
   }, [dispatch, id]);
 
   const handleAddCart = () => {
@@ -30,7 +32,10 @@ const Bookdetail = () => {
       const userId = tokenPayload.data.userId;
       if (isLoggedIn) {
         axios
-          .post(`http://localhost:4000/api/addtocart/${bookId}`, { userId })
+          .post(
+            `https://book-directory-api-tkvh.onrender.com/api/addtocart/${bookId}`,
+            { userId }
+          )
           .then((resp) => {
             console.log(resp.data.result);
           })
@@ -65,7 +70,9 @@ const Bookdetail = () => {
 
   const handleDeleteBook = (bookId) => {
     axios
-      .delete(`http://localhost:4000/api/removebook/${bookId}`)
+      .delete(
+        `https://book-directory-api-tkvh.onrender.com/api/removebook/${bookId}`
+      )
       .then(() => {
         dispatch(removeBook(bookId));
         navigate("/books");

@@ -32,8 +32,8 @@ export const Subnavbar = () => {
             <Link className="nav-link active custom-text" to="/books/Action">
               Action
             </Link>
-            <Link className="nav-link active custom-text" to="/books/Romcom">
-              RomCom
+            <Link className="nav-link active custom-text" to="/books/Romance">
+              Romance
             </Link>
             <Link className="nav-link active custom-text" to="/books/War">
               War

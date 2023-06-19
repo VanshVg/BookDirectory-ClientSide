@@ -42,14 +42,16 @@ export const Navbar = () => {
   }, [userType]);
 
   const handleLogout = () => {
-    axios.post("http://localhost:4000/api/logout").then((resp) => {
-      dispatch(setIsLoggedIn(false));
-      dispatch(setUserType("customer"));
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("userToken");
-      console.log(resp);
-      navigate("/books");
-    });
+    axios
+      .post("https://book-directory-api-tkvh.onrender.com/api/logout")
+      .then((resp) => {
+        dispatch(setIsLoggedIn(false));
+        dispatch(setUserType("customer"));
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userToken");
+        console.log(resp);
+        navigate("/books");
+      });
   };
 
   const handleSearch = (e) => {
@@ -133,10 +135,10 @@ export const Navbar = () => {
                   {isLoggedIn ? (
                     <>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <Link className="dropdown-item" to="/profile">
                           <AccountCircleRoundedIcon className="icon-style" />
                           Profile
-                        </a>
+                        </Link>
                       </li>
                       <li></li>
                       <li>

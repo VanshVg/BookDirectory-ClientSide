@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/login.css";
 import axios from "axios";
@@ -28,7 +28,10 @@ export const Login = () => {
       validationSchema: loginSchema,
       onSubmit: (values, action) => {
         axios
-          .post("http://localhost:4000/api/login", values)
+          .post(
+            "https://book-directory-api-tkvh.onrender.com/api/login",
+            values
+          )
           .then((resp) => {
             if (resp.data.isLoggedIn) {
               dispatch(login(true, resp.data.role, resp.data.userToken));
@@ -40,13 +43,13 @@ export const Login = () => {
               localStorage.setItem("userToken", resp.data.userToken);
             }
 
-            if (resp.status == 200) {
+            if (resp.status === 200) {
               navigate("/books");
               action.resetForm();
             }
           })
           .catch((err) => {
-            if (err.response.status != 200) {
+            if (err.response.status !== 200) {
               setLoginError("Invalid Email or Password. Please try again.");
             }
           });

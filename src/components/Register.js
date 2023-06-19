@@ -30,7 +30,10 @@ export const Register = () => {
       validationSchema: registerSchema,
       onSubmit: (values, action) => {
         axios
-          .post("http://localhost:4000/api/register", values)
+          .post(
+            "https://book-directory-api-tkvh.onrender.com/api/register",
+            values
+          )
           .then((resp) => {
             if (resp.data.isLoggedIn) {
               const { role, userToken } = resp.data;

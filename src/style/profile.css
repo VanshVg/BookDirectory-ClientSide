@@ -1,0 +1,125 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  transition: 0.3s ease;
+}
+
+.profile-form {
+  width: 1000px;
+  padding: 100px;
+  border-radius: 5px;
+}
+
+.profile-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.profile-form-column {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.profile-field {
+  width: 100%;
+  padding: 5px;
+}
+
+.profile-button {
+  width: 50%;
+  background-color: #e27d60;
+  border-color: #e27d60;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 50px;
+  transition: 0.2s ease;
+}
+
+.profile-button:hover {
+  background-color: #c7694b;
+  border-color: #d8c3a5;
+}
+
+.profile-button:active {
+  background-color: #c7694b !important;
+  border-color: #c7694b !important;
+}
+
+.profile-field[disabled]::placeholder {
+  color: black;
+  opacity: 1;
+}
+
+.profile-field:hover {
+  cursor: no-drop;
+}
+
+.password-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e27d60;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  opacity: 1;
+}
+
+.password-box .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.box-field::placeholder {
+  margin-top: 15px !important;
+  color: black;
+  opacity: 1;
+}
+
+.box-field {
+  width: 100%;
+  padding: 5px;
+}
+
+.box-button {
+  width: 50%;
+  background-color: #e8a87c;
+  border-color: #e8a87c;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 30px;
+  margin-left: 70px;
+}
+
+.box-button:hover {
+  background-color: #d88f66;
+  border-color: #d8c3a5;
+}
+
+.box-button:active {
+  background-color: #d88f66 !important;
+  border-color: #d88f66 !important;
+}
