@@ -1,4 +1,4 @@
-import { SET_CART_ITEMS } from "../actions/types";
+import { SET_CART_ITEMS } from "../types";
 
 const initialState = {
   cartItems: [],

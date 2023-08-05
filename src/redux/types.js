@@ -4,3 +4,6 @@ export const SET_CART_ITEMS = "SET_CART_ITEMS";
 export const SET_BOOK_DATA = "SET_BOOK_DATA";
 export const REMOVE_BOOK = "REMOVE_BOOK";
 export const SET_USER_DATA = "SET_USER_DATA";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const SET_USER_TOKEN = "SET_USER_TOKEN";

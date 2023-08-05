@@ -23,13 +23,9 @@ export const Changepassword = () => {
       onSubmit: (values, action) => {
         console.log(values);
         axios
-          .put(
-            "https://book-directory-api-tkvh.onrender.com/api/changepassword",
-            values,
-            {
-              params: { userId: userId },
-            }
-          )
+          .put("http://localhost:4000/api/changepassword", values, {
+            params: { userId: userId },
+          })
           .then((resp) => {
             if (resp.status === 200) {
               toast.success("Password changed successfully", {

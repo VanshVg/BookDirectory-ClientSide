@@ -28,10 +28,7 @@ export const Login = () => {
       validationSchema: loginSchema,
       onSubmit: (values, action) => {
         axios
-          .post(
-            "https://book-directory-api-tkvh.onrender.com/api/login",
-            values
-          )
+          .post("http://localhost:4000/api/login", values)
           .then((resp) => {
             if (resp.data.isLoggedIn) {
               dispatch(login(true, resp.data.role, resp.data.userToken));

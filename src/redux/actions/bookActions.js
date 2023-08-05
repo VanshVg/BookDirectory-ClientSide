@@ -1,4 +1,4 @@
-import { SET_BOOK_DATA, REMOVE_BOOK } from "./types";
+import { SET_BOOK_DATA, REMOVE_BOOK } from "../types";
 
 export const setBookData = (bookData) => {
   return {

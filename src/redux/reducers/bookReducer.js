@@ -1,4 +1,4 @@
-import { SET_BOOK_DATA, REMOVE_BOOK } from "../actions/types";
+import { SET_BOOK_DATA, REMOVE_BOOK } from "../types";
 
 const initialState = {
   bookData: [],

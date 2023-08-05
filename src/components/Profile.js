@@ -22,7 +22,7 @@ export const Profile = () => {
   useEffect(() => {
     dispatch(setUserData([]));
     axios
-      .get("https://book-directory-api-tkvh.onrender.com/api/profile", {
+      .get("http://localhost:4000/api/profile", {
         params: { userId: userId },
       })
       .then((resp) => {
@@ -36,7 +36,7 @@ export const Profile = () => {
 
   const handleOldPasswordButton = () => {
     axios
-      .get("https://book-directory-api-tkvh.onrender.com/api/verifypassword", {
+      .get("http://localhost:4000/api/verifypassword", {
         params: { userId: userId, password: password },
       })
       .then((resp) => {

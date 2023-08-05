@@ -12,7 +12,7 @@ export const Users = () => {
   useEffect(() => {
     dispatch(setUserData([]));
     axios
-      .get("https://book-directory-api-tkvh.onrender.com/api/displayUsers")
+      .get("http://localhost:4000/api/displayUsers")
       .then((resp) => {
         dispatch(setUserData(resp.data.data));
       })

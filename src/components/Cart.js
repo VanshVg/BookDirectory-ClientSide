@@ -17,7 +17,7 @@ const Cart = () => {
       const tokenPayload = JSON.parse(atob(storedToken.split(".")[1]));
       const userId = tokenPayload.data.userId;
       axios
-        .get("https://book-directory-api-tkvh.onrender.com/api/cartbooks", {
+        .get("http://localhost:4000/api/cartbooks", {
           params: { userId: userId },
         })
         .then((resp) => {
@@ -35,12 +35,9 @@ const Cart = () => {
     const tokenPayload = JSON.parse(atob(storedToken.split(".")[1]));
     const userId = tokenPayload.data.userId;
     axios
-      .put(
-        `https://book-directory-api-tkvh.onrender.com/api/addquantity/${bookId}`,
-        {
-          params: { userId: userId },
-        }
-      )
+      .put(`http://localhost:4000/api/addquantity/${bookId}`, {
+        params: { userId: userId },
+      })
       .then(() => {
         setCartData((prevCartData) =>
           prevCartData.map((book) =>
@@ -60,12 +57,9 @@ const Cart = () => {
     const userId = tokenPayload.data.userId;
     if (quantity > 1) {
       axios
-        .put(
-          `https://book-directory-api-tkvh.onrender.com/api/removequantity/${bookId}`,
-          {
-            params: { userId: userId },
-          }
-        )
+        .put(`http://localhost:4000/api/removequantity/${bookId}`, {
+          params: { userId: userId },
+        })
         .then(() => {
           setCartData((prevCartData) =>
             prevCartData.map((book) =>
@@ -85,12 +79,9 @@ const Cart = () => {
     const tokenPayload = JSON.parse(atob(storedToken.split(".")[1]));
     const userId = tokenPayload.data.userId;
     axios
-      .delete(
-        `https://book-directory-api-tkvh.onrender.com/api/removecart/${bookId}`,
-        {
-          params: { userId: userId },
-        }
-      )
+      .delete(`http://localhost:4000/api/removecart/${bookId}`, {
+        params: { userId: userId },
+      })
       .then((resp) => {
         console.log(resp.data);
         setCartData(cartData.filter((book) => book.bookId !== bookId));

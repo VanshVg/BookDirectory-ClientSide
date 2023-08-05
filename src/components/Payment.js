@@ -16,17 +16,15 @@ export const Payment = () => {
   const quantity = new URLSearchParams(window.location.search).get("quantity");
 
   useEffect(() => {
-    axios
-      .get(`https://book-directory-api-tkvh.onrender.com/api/showbook/${id}`)
-      .then((resp) => {
-        dispatch(setBookData(resp.data.book));
-      });
+    axios.get(`http://localhost:4000/api/showbook/${id}`).then((resp) => {
+      dispatch(setBookData(resp.data.book));
+    });
   }, [dispatch]);
 
   const handleToken = async (token, addresses) => {
     if (quantity === null) {
       const resp = await axios.post(
-        "https://book-directory-api-tkvh.onrender.com/api/processpayment",
+        "http://localhost:4000/api/processpayment",
         {
           token,
           bookData,
@@ -39,7 +37,7 @@ export const Payment = () => {
       }
     } else {
       const resp = await axios.post(
-        "https://book-directory-api-tkvh.onrender.com/api/processpayment",
+        "http://localhost:4000/api/processpayment",
         {
           token,
           bookData,

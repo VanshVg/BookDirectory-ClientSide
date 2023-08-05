@@ -42,16 +42,14 @@ export const Navbar = () => {
   }, [userType]);
 
   const handleLogout = () => {
-    axios
-      .post("https://book-directory-api-tkvh.onrender.com/api/logout")
-      .then((resp) => {
-        dispatch(setIsLoggedIn(false));
-        dispatch(setUserType("customer"));
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("userToken");
-        console.log(resp);
-        navigate("/books");
-      });
+    axios.post("http://localhost:4000/api/logout").then((resp) => {
+      dispatch(setIsLoggedIn(false));
+      dispatch(setUserType("customer"));
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userToken");
+      console.log(resp);
+      navigate("/books");
+    });
   };
 
   const handleSearch = (e) => {

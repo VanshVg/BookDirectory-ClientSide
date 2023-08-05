@@ -45,10 +45,7 @@ export const Addbook = () => {
     formData.append("image", bookData.image);
 
     axios
-      .post(
-        "https://book-directory-api-tkvh.onrender.com/api/addBook",
-        formData
-      )
+      .post("http://localhost:4000/api/addBook", formData)
       .then((resp) => {
         console.log(resp);
       })

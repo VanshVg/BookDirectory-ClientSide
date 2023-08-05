@@ -13,7 +13,7 @@ export const Filterbooks = () => {
 
   useEffect(() => {
     axios
-      .get(`https://book-directory-api-tkvh.onrender.com/api/books/${value}`)
+      .get(`http://localhost:4000/api/books/${value}`)
       .then((resp) => {
         dispatch(setBookData(resp.data.books));
       })

@@ -18,11 +18,9 @@ export const Books = () => {
 
   useEffect(() => {
     dispatch(setBookData([]));
-    axios
-      .get("https://book-directory-api-tkvh.onrender.com/api/showbooks")
-      .then((resp) => {
-        dispatch(setBookData(resp.data.data));
-      });
+    axios.get("http://localhost:4000/api/showbooks").then((resp) => {
+      dispatch(setBookData(resp.data.data));
+    });
   }, [dispatch]);
 
   if (!Array.isArray(bookData)) {

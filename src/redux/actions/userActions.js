@@ -1,4 +1,4 @@
-import { SET_USER_DATA } from "./types";
+import { SET_USER_DATA } from "../types";
 
 export const setUserData = (userData) => {
   return {
